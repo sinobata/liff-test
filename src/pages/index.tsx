@@ -16,11 +16,11 @@ const geistMono = Geist_Mono({
 
 export default function Home() {
   const [userInfo, setUserInfo] = useState({
-    version: liff.getVersion(),
-    isInClient: liff.isInClient(),
-    isLoggedIn: liff.isLoggedIn(),
-    os: liff.getOS() || '',
-    lineVersion: liff.getLineVersion() || '',
+    version: '',
+    isInClient: false,
+    isLoggedIn: false,
+    os: '',
+    lineVersion: '',
   });
 
   const handleCloseButton = () => {
