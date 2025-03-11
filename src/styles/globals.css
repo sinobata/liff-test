@@ -40,3 +40,17 @@ a {
     color-scheme: dark;
   }
 }
+
+
+.leaflet-container {
+  height: calc(100% - 8.4rem);
+  width: 100vw;
+}
+
+.leaflet-control-layers-base {
+  text-align: left;
+}
+
+.leaflet-popup-content {
+  width: auto !important;
+}
