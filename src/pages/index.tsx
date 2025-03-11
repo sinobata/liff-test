@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export default function Home() {
-  const [userInfo, _setUserInfo] = useState({
+  const [userInfo, setUserInfo] = useState({
     version: liff.getVersion(),
     isInClient: liff.isInClient(),
     isLoggedIn: liff.isLoggedIn(),
@@ -34,6 +34,14 @@ export default function Home() {
   }
 
   const handleOpenExternalButton = () => {
+    setUserInfo({
+      version: liff.getVersion(),
+      isInClient: liff.isInClient(),
+      isLoggedIn: liff.isLoggedIn(),
+      os: liff.getOS() || '',
+      lineVersion: liff.getLineVersion() || '',
+    });
+
     liff
     .sendMessages([
       {
