@@ -61,7 +61,7 @@
   gap: 16px;
 }
 
-.ctas a {
+.ctas button {
   appearance: none;
   border-radius: 128px;
   height: 48px;
@@ -81,13 +81,13 @@
   font-weight: 500;
 }
 
-a.primary {
+button.primary {
   background: var(--foreground);
   color: var(--background);
   gap: 8px;
 }
 
-a.secondary {
+button.secondary {
   border-color: var(--gray-alpha-200);
   min-width: 180px;
 }
