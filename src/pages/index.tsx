@@ -15,13 +15,12 @@ const geistMono = Geist_Mono({
 });
 
 export default function Home() {
-  const [userInfo, setUserInfo] = useState({
-    lang: "",
-    version: "",
-    isInClient: false,
-    isLoggedIn: false,
-    os: "",
-    lineVersion: "",
+  const [userInfo, _setUserInfo] = useState({
+    version: liff.getVersion(),
+    isInClient: liff.isInClient(),
+    isLoggedIn: liff.isLoggedIn(),
+    os: liff.getOS() || '',
+    lineVersion: liff.getLineVersion() || '',
   });
 
   const handleCloseButton = () => {
@@ -35,13 +34,18 @@ export default function Home() {
   }
 
   const handleOpenExternalButton = () => {
-    setUserInfo({
-      lang: liff.getAppLanguage(),
-      version: liff.getVersion(),
-      isInClient: liff.isInClient(),
-      isLoggedIn: liff.isLoggedIn(),
-      os: liff.getOS() || '',
-      lineVersion: liff.getLineVersion() || '',
+    liff
+    .sendMessages([
+      {
+        type: "text",
+        text: "Hello, World!",
+      },
+    ])
+    .then(() => {
+      console.log("message sent");
+    })
+    .catch((err) => {
+      console.log("error", err);
     });
   }
 
@@ -60,7 +64,7 @@ export default function Home() {
           <div>LIFF APP</div>
           <div className={styles.ctas}>
             <button className={styles.primary} onClick={handleCloseButton}>Close Window</button>
-            <button className={styles.secondary} onClick={handleOpenExternalButton}>情報取得</button>
+            <button className={styles.secondary} onClick={handleOpenExternalButton}>テキスト送信</button>
           </div>
           <div>
             <pre>{JSON.stringify(userInfo, null, 2)}</pre>
