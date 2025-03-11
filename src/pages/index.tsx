@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import styles from "@/styles/Home.module.css";
 import liff from '@line/liff';
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,6 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export default function Home() {
+  const router = useRouter();
   const [userInfo, setUserInfo] = useState({
     version: '',
     isInClient: false,
@@ -32,7 +34,7 @@ export default function Home() {
       liff.closeWindow();
     }
   }
-  
+
   const handleGetInfo = () => {
     setUserInfo({
       version: liff.getVersion(),
@@ -68,6 +70,14 @@ export default function Home() {
     });
   }
 
+  const handleTransitionEvent = () => {
+    router.push('/event');
+  }
+
+  const handleTransitionMap = () => {
+    router.push('/map');
+  }
+
   return (
     <>
       <Head>
@@ -85,7 +95,9 @@ export default function Home() {
             <button className={styles.primary} onClick={handleCloseButton}>Close Window</button>
             <button className={styles.secondary} onClick={handleGetInfo}>情報取得</button>
             <button className={styles.secondary} onClick={handleOpenExternalButton}>テキスト送信</button>
-            <button className={styles.secondary} onClick={handleTransitionURL}>画面遷移</button>
+            <button className={styles.secondary} onClick={handleTransitionURL}>別サイト表示</button>
+            <button className={styles.secondary} onClick={handleTransitionEvent}>イベント画面へ遷移</button>
+            <button className={styles.secondary} onClick={handleTransitionMap}>マップ画面へ遷移</button>
           </div>
           <div>
             <pre>{JSON.stringify(userInfo, null, 2)}</pre>
