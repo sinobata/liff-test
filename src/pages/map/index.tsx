@@ -19,7 +19,6 @@ export default function  Map() {
     }
     const initializeLiff = async () => {
       try {
-        await liff.init({ liffId: process.env.NEXT_PUBLIC_LIFF_ID! });
         if (!liff.isLoggedIn()) {
           liff.login();
         }
@@ -47,7 +46,7 @@ export default function  Map() {
   return (
     <div>
       {location ? (
-        <MapContainer center={location} zoom={15} style={{ height: '500px', width: '100%' }}>
+        <MapContainer center={location} zoom={15} style={{ height: '100%', width: '100%' }}>
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
