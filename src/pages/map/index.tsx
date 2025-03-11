@@ -13,32 +13,32 @@ export default function Map() {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const L = require('leaflet');
+      import('leaflet').then(L => {
+        // カスタムアイコンの作成
+        const icon = L.icon({
+          iconUrl: '/marker.svg', // カスタムアイコンのパス
+          iconSize: [40, 41], // アイコンのサイズ
+          iconAnchor: [12, 41], // アイコンのアンカー位置
+          popupAnchor: [1, -34], // ポップアップのアンカー位置
+          shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png', // 影の画像
+          shadowSize: [41, 41], // 影のサイズ
+        });
 
-      // カスタムアイコンの作成
-      const icon = L.icon({
-        iconUrl: '/marker.svg', // カスタムアイコンのパス
-        iconSize: [40, 41], // アイコンのサイズ
-        iconAnchor: [12, 41], // アイコンのアンカー位置
-        popupAnchor: [1, -34], // ポップアップのアンカー位置
-        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png', // 影の画像
-        shadowSize: [41, 41], // 影のサイズ
+        setCustomIcon(icon);
+
+        if ('geolocation' in navigator) {
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              setPosition([position.coords.latitude, position.coords.longitude]);
+            },
+            (error) => {
+              console.error('Error obtaining geolocation', error);
+            }
+          );
+        } else {
+          console.error('Geolocation is not available');
+        }
       });
-
-      setCustomIcon(icon);
-
-      if ('geolocation' in navigator) {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            setPosition([position.coords.latitude, position.coords.longitude]);
-          },
-          (error) => {
-            console.error('Error obtaining geolocation', error);
-          }
-        );
-      } else {
-        console.error('Geolocation is not available');
-      }
     }
   }, []);
 
