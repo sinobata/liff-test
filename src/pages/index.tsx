@@ -57,6 +57,13 @@ export default function Home() {
     });
   }
 
+  const handleTransitionURL = () => {
+    liff.openWindow({
+      url: "https://team-lab.com",
+      external: true,
+    });
+  }
+
   return (
     <>
       <Head>
@@ -73,6 +80,7 @@ export default function Home() {
           <div className={styles.ctas}>
             <button className={styles.primary} onClick={handleCloseButton}>Close Window</button>
             <button className={styles.secondary} onClick={handleOpenExternalButton}>テキスト送信</button>
+            <button className={styles.secondary} onClick={handleTransitionURL}>画面遷移</button>
           </div>
           <div>
             <pre>{JSON.stringify(userInfo, null, 2)}</pre>
