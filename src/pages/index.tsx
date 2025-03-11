@@ -32,8 +32,8 @@ export default function Home() {
       liff.closeWindow();
     }
   }
-
-  const handleOpenExternalButton = () => {
+  
+  const handleGetInfo = () => {
     setUserInfo({
       version: liff.getVersion(),
       isInClient: liff.isInClient(),
@@ -41,7 +41,9 @@ export default function Home() {
       os: liff.getOS() || '',
       lineVersion: liff.getLineVersion() || '',
     });
+  }
 
+  const handleOpenExternalButton = () => {
     liff
     .sendMessages([
       {
@@ -55,6 +57,8 @@ export default function Home() {
     .catch((err) => {
       console.log("error", err);
     });
+
+    handleCloseButton();
   }
 
   const handleTransitionURL = () => {
@@ -79,6 +83,7 @@ export default function Home() {
           <div>LIFF APP</div>
           <div className={styles.ctas}>
             <button className={styles.primary} onClick={handleCloseButton}>Close Window</button>
+            <button className={styles.secondary} onClick={handleGetInfo}>情報取得</button>
             <button className={styles.secondary} onClick={handleOpenExternalButton}>テキスト送信</button>
             <button className={styles.secondary} onClick={handleTransitionURL}>画面遷移</button>
           </div>
