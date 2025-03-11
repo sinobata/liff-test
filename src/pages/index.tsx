@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { Geist, Geist_Mono } from "next/font/google";
+import 'leaflet/dist/leaflet.css';
 import styles from "@/styles/Home.module.css";
 import liff from '@line/liff';
 import { useState } from "react";
