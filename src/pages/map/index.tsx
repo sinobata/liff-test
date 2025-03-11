@@ -1,9 +1,15 @@
 import { useEffect, useState } from 'react';
 import liff from '@line/liff';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { LatLngExpression } from 'leaflet';
+import dynamic from 'next/dynamic';
 
-const MapPage = () => {
+const MapContainer = dynamic(() => import('react-leaflet').then(mod => mod.MapContainer), { ssr: false });
+const TileLayer = dynamic(() => import('react-leaflet').then(mod => mod.TileLayer), { ssr: false });
+const Marker = dynamic(() => import('react-leaflet').then(mod => mod.Marker), { ssr: false });
+const Popup = dynamic(() => import('react-leaflet').then(mod => mod.Popup), { ssr: false });
+
+
+export default function  Map() {
   const [location, setLocation] = useState<LatLngExpression | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -58,5 +64,3 @@ const MapPage = () => {
     </div>
   );
 };
-
-export default MapPage;
